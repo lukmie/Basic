@@ -1,6 +1,5 @@
 package api;
 
-
 import entity.Product;
 
 import java.util.List;

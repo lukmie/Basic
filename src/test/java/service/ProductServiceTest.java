@@ -27,14 +27,11 @@ public class ProductServiceTest {
     @Test
     public void testGetAllProductsNegative() {
         List<Product> products = new ArrayList<Product>();
-        products.add(new Cloth(11, "T-SHIRT", 35.0f, 0.3f, "Black", 4, "XL", "COTTON"));
-        products.add(new Boots(21, "Boots", 35.0f, 0.3f, "Black", 4, 38, true));
+        products.add(new Cloth(123, "shirt", 22.30, 0.1f, "red", 200, "XL","Cotton"));
+        products.add(new Cloth(121, "shirt", 22.30, 0.1f, "blue", 200, "S","Cotton"));
 
-        //new ArrayList<Product>(products) - utworzenie kopii listy, więcej o kopiowaniu i adresach w 4 tygodniu
-        //dzieki wykonaniu kopii mamy dwa różne obiekty zamiast jedngo
-        //jeden siedzi w productService, drugi w naszym tescie
         ProductServiceImpl productService = new ProductServiceImpl(new ArrayList<Product>(products));
-        products.add(new Cloth(31, "Spodnie", 44.f, 0.f, "White", 3, "S", "COTTON"));
+        products.add(new Cloth(122, "skirt", 32.30, 0.21f, "blue", 100, "M","Cotton"));
         List<Product> listFromTestClass = productService.getAllProducts();
 
         Assert.assertNotEquals(products, listFromTestClass);
