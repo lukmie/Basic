@@ -7,6 +7,7 @@ public class Product {
     private float weight;
     private String color;
     private int productCount;
+    public final static String PRODUCT_SEPARATOR = "#";
 
     public Product(Integer id, String productName, double price, float weight, String color, int productCount) {
         this.id = id;
@@ -49,15 +50,10 @@ public class Product {
         this.productCount = productCount;
     }
 
+
+
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                ", weight=" + weight +
-                ", color='" + color + '\'' +
-                ", productCount=" + productCount +
-                '}';
+        return id + PRODUCT_SEPARATOR + productName + PRODUCT_SEPARATOR + price + PRODUCT_SEPARATOR + weight + PRODUCT_SEPARATOR + color + PRODUCT_SEPARATOR + productCount;
     }
 }

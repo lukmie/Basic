@@ -11,6 +11,6 @@ public interface ProductDao {
     void removeProductById(Integer id) throws IOException;
     void removeProductByName(String productName) throws IOException;
     List<Product> getAllProducts() throws IOException;
-    Integer getProductById(Integer id) throws IOException;
-    Integer getProductByProductName(String productName) throws IOException;
+    Product getProductById(Integer id) throws IOException;
+    Product getProductByProductName(String productName) throws IOException;
 }

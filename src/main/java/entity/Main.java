@@ -22,5 +22,10 @@ public class Main {
 //        numbers.remove(1);
 //        numbers.size();
 
+        double a = 5.0;
+        double b;
+        b = Double.parseDouble("3");
+        System.out.println(b);
+
     }
 }
