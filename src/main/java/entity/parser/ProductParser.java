@@ -5,6 +5,7 @@ import entity.Cloth;
 import entity.Product;
 
 public class ProductParser {
+
     public static Product stringToProduct(String productStr, String productType){
         if(productType.equals("PRODUCT")){
             return convertToProduct(productStr);
@@ -13,7 +14,6 @@ public class ProductParser {
         } else if(productType.equals("BOOTS")){
             return convertToBoots(productStr);
         }
-
         return null;
     }
 

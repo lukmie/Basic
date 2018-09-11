@@ -24,10 +24,9 @@ public class ProductDaoImpl implements ProductDao {
         List<Product> products = getAllProducts();
         products.add(product);
         saveProducts(products);
-
     }
 
-    public void saveProducts(List<Product> products) throws IOException {
+    public void saveProducts(List<Product> products) throws FileNotFoundException {
         FileUtils.clearFile(fileName);
         PrintWriter pw = new PrintWriter(new FileOutputStream(fileName, true));
         for(Product product:products){
@@ -64,9 +63,11 @@ public class ProductDaoImpl implements ProductDao {
         String readLine = br.readLine();
         while(readLine != null){
             Product product = ProductParser.stringToProduct(readLine, productType);
+            System.out.println(product);
             if(product != null){
                 products.add(product);
             }
+            readLine = br.readLine();
         }
         br.close();
 

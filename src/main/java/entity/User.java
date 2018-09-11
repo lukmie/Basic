@@ -1,9 +1,10 @@
 package entity;
 
 public class User {
-    private int id;
+    private Integer id;
     private String login;
     private String password;
+    public static final String USER_SEPARATOR = "#";
 
     public User(int id, String login, String password) {
         this.id = id;
@@ -11,16 +12,20 @@ public class User {
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return id + USER_SEPARATOR + login + USER_SEPARATOR + password;
     }
 }
