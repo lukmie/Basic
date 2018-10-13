@@ -1,7 +1,6 @@
 package dao;
 
 import api.UserDao;
-import entity.Product;
 import entity.User;
 import entity.parser.UserParser;
 import utils.FileUtils;
@@ -11,11 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private String fileName;
+    private String fileName = "users.data";
+
+    private static UserDaoImpl instance = null;
+
+    private UserDaoImpl() {
+        try {
+            FileUtils.createNewFile(fileName);
+        } catch (IOException e) {
+            System.out.println("File path error.");
+            System.exit(-1);
+        }
+    }
 
     public UserDaoImpl(String fileName) throws IOException {
         this.fileName=fileName;
         FileUtils.createNewFile(fileName);
+    }
+
+    public static UserDaoImpl getInstance(){
+        if(instance == null){
+            instance = new UserDaoImpl();
+        }
+        return instance;
     }
 
     public void saveUser(User user) throws IOException {
@@ -88,4 +105,5 @@ public class UserDaoImpl implements UserDao {
             }
         }
     }
+
 }
