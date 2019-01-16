@@ -4,6 +4,8 @@ public class Boots extends Product {
     private int size;
     private boolean isNaturalSkin;
 
+    public final static char PRODUCT_TYPE = 'B';
+
     public Boots(int id, String productName, double price, float weight, String color, int productCount, int size, boolean isNaturalSkin) {
         super(id, productName, price, weight, color, productCount);
         this.size = size;
@@ -20,6 +22,6 @@ public class Boots extends Product {
 
     @Override
     public String toString() {
-        return super.toString() + PRODUCT_SEPARATOR + size + PRODUCT_SEPARATOR + isNaturalSkin;
+        return PRODUCT_TYPE + PRODUCT_SEPARATOR + getBasicProductString() + PRODUCT_SEPARATOR + size + PRODUCT_SEPARATOR + isNaturalSkin;
     }
 }

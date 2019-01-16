@@ -11,17 +11,23 @@ import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
 
-    private final String fileName;
-    private final String productType;
+    private static final String fileName = "products.data";
+    private static ProductDao instance = null;
 
-    public ProductDaoImpl(String fileName, String productType) {
-        this.fileName = fileName;
-        this.productType = productType;
+
+    private ProductDaoImpl() {
         try {
             FileUtils.createNewFile(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ProductDao getInstance(){
+        if(instance == null){
+            instance = new ProductDaoImpl();
+        }
+        return instance;
     }
 
     public void saveProduct(Product product) throws IOException {
@@ -66,7 +72,7 @@ public class ProductDaoImpl implements ProductDao {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String readLine = br.readLine();
         while(readLine != null){
-            Product product = ProductParser.stringToProduct(readLine, productType);
+            Product product = ProductParser.stringToProduct(readLine);
             System.out.println(product);
             if(product != null){
                 products.add(product);
@@ -78,25 +84,4 @@ public class ProductDaoImpl implements ProductDao {
         return products;
     }
 
-    public Product getProductById(Integer id) throws IOException {
-        List<Product> products = getAllProducts();
-
-        for(Product product : products){
-            if(product.getId().equals(id)){
-                return product;
-            }
-        }
-        return null;
-    }
-
-    public Product getProductByProductName(String productName) throws IOException {
-        List<Product> products = getAllProducts();
-
-        for(Product product : products){
-            if(product.getProductName().equals(productName)){
-                return product;
-            }
-        }
-        return null;
-    }
 }
